@@ -78,6 +78,11 @@ class _HomeState extends State<Home> {
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.green, fontSize: 25.0),
                   controller: weightController,
+                  validator: (value) {
+                    if(value!.isEmpty){
+                      return "Insira seu Peso";
+                    }
+                  },
                 ),
                 TextFormField(
                   keyboardType: TextInputType.number,
@@ -88,13 +93,22 @@ class _HomeState extends State<Home> {
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.green, fontSize: 25.0),
                   controller: heinghtController,
+                  validator: (value) {
+                    if(value!.isEmpty){
+                      return "Insira sua Altura";
+                    }
+                  },
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                   child: Container(
                       height: 50.0,
                       child: RaisedButton(
-                        onPressed: _calculate,
+                        onPressed: (){
+                          if(_formKey.currentState!.validate()){
+                            _calculate();
+                          }
+                        },
                         child: Text(
                           "Caucular",
                           style: TextStyle(color: Colors.white, fontSize: 25.0),
